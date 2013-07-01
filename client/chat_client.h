@@ -1,6 +1,5 @@
-
 //
-// chat_client.cpp
+// chat_client.h
 // ~~~~~~~~~~~~~~~
 //
 // Copyright (c) 2003-2012 Christopher M. Kohlhoff (chris at kohlhoff dot com)
@@ -9,13 +8,16 @@
 // file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 //
 
-#include <cstdlib>
-#include <deque>
-#include <iostream>
-#include <boost/bind.hpp>
+#ifndef WXBOOST_CHAT_CLIENT
+#define WXBOOST_CHAT_CLIENT
+
+#include "my_panel.h"
+#include "my_text_ctrl.h"
+#include "chat_message.hpp"
+#include <wx/event.h>
+#include <wx/string.h>
 #include <boost/asio.hpp>
 #include <boost/thread/thread.hpp>
-#include "chat_message.hpp"
 
 using boost::asio::ip::tcp;
 
@@ -78,6 +80,18 @@ private:
     {
       std::cout.write(read_msg_.body(), read_msg_.body_length());
       std::cout << "\n";
+
+/////////////////////////////////////////////////////////////
+      wxCommandEvent event( wxEVT_MY_EVENT, MyPanel::m_textrich->GetId());
+      //event.SetEventObject( this );
+      // Give it some contents
+      wxString text = wxString::FromUTF8(read_msg_.body(), read_msg_.body_length());
+      event.SetString(text);
+      // Send it
+      MyPanel::m_textrich->GetEventHandler()->ProcessEvent( event );
+/////////////////////////////////////////////////////////////
+      //MyPanel::m_textrich->AppendText(text);
+
       boost::asio::async_read(socket_,
                               boost::asio::buffer(read_msg_.data(), chat_message::header_length),
                               boost::bind(&chat_client::handle_read_header, this,
@@ -135,6 +149,7 @@ private:
   chat_message_queue write_msgs_;
 };
 
+#if 0
 int main(int argc, char* argv[])
 {
   try
@@ -176,4 +191,5 @@ int main(int argc, char* argv[])
 
   return 0;
 }
-
+#endif
+#endif//WXBOOST_CHAT_CLIENT
