@@ -78,19 +78,16 @@ private:
   {
     if (!error)
     {
-      std::cout.write(read_msg_.body(), read_msg_.body_length());
-      std::cout << "\n";
+      //std::cout.write(read_msg_.body(), read_msg_.body_length());
+      //std::cout << "\n";
 
-/////////////////////////////////////////////////////////////
       wxCommandEvent event( wxEVT_MY_EVENT, MyPanel::m_textrich->GetId());
       //event.SetEventObject( this );
       // Give it some contents
       wxString text = wxString::FromUTF8(read_msg_.body(), read_msg_.body_length());
-      event.SetString(text);
+      event.SetString(text.c_str());
       // Send it
-      MyPanel::m_textrich->GetEventHandler()->ProcessEvent( event );
-/////////////////////////////////////////////////////////////
-      //MyPanel::m_textrich->AppendText(text);
+      wxPostEvent(MyPanel::m_textrich, event);
 
       boost::asio::async_read(socket_,
                               boost::asio::buffer(read_msg_.data(), chat_message::header_length),
