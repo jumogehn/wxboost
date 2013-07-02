@@ -28,36 +28,6 @@ public:
 
     void OnQuit(wxCommandEvent& event);
     void OnAbout(wxCommandEvent& event);
-
-#if wxUSE_LOG
-    void OnLogClear(wxCommandEvent& event);
-#endif // wxUSE_LOG
-
-    void OnLogKey(wxCommandEvent& event)
-    {
-        MyTextCtrl::ms_logKey = event.IsChecked();
-    }
-
-    void OnLogChar(wxCommandEvent& event)
-    {
-        MyTextCtrl::ms_logChar = event.IsChecked();
-    }
-
-    void OnLogMouse(wxCommandEvent& event)
-    {
-        MyTextCtrl::ms_logMouse = event.IsChecked();
-    }
-
-    void OnLogText(wxCommandEvent& event)
-    {
-        MyTextCtrl::ms_logText = event.IsChecked();
-    }
-
-    void OnLogFocus(wxCommandEvent& event)
-    {
-        MyTextCtrl::ms_logFocus = event.IsChecked();
-    }
-
     void OnIdle( wxIdleEvent& event );
 
 private:

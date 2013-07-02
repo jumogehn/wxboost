@@ -19,16 +19,6 @@
 BEGIN_EVENT_TABLE(MyFrame, wxFrame)
     EVT_MENU(TEXT_QUIT,   MyFrame::OnQuit)
     EVT_MENU(TEXT_ABOUT,  MyFrame::OnAbout)
-
-    EVT_MENU(TEXT_LOG_KEY,  MyFrame::OnLogKey)
-    EVT_MENU(TEXT_LOG_CHAR, MyFrame::OnLogChar)
-    EVT_MENU(TEXT_LOG_MOUSE,MyFrame::OnLogMouse)
-    EVT_MENU(TEXT_LOG_TEXT, MyFrame::OnLogText)
-    EVT_MENU(TEXT_LOG_FOCUS,MyFrame::OnLogFocus)
-#if wxUSE_LOG
-    EVT_MENU(TEXT_CLEAR,    MyFrame::OnLogClear)
-#endif // wxUSE_LOG
-
     EVT_IDLE(MyFrame::OnIdle)
 END_EVENT_TABLE()
 
@@ -52,25 +42,21 @@ void MyFrame::OnAbout( wxCommandEvent& WXUNUSED(event) )
     wxBeginBusyCursor();
 
     wxMessageDialog dialog(this,
-      _T("This is a text control sample. It demonstrates the many different\n")
-      _T("text control styles, the use of the clipboard, setting and handling\n")
-      _T("tooltips and intercepting key and char events.\n")
+      _T("This is an exercise of learning wxwidgets and boost.asio\n")
+      _T("IO is taken from the boost.asio example - \n")
+      _T("   http://www.boost.org/doc/libs/1_53_0/doc/html/boost_asio/examples.html\n")
+      _T("GUI is taken from the wxwidgets example - \n")
+      _T("   samples/text - Robert Roebling, Julian Smart, Vadim Zeitlin\n")
       _T("\n")
-        _T("Copyright (c) 1999, Robert Roebling, Julian Smart, Vadim Zeitlin"),
-        _T("About wxTextCtrl Sample"),
-        wxOK | wxICON_INFORMATION);
+      _T(""),
+      _T("About wxboost"),
+      wxOK | wxICON_INFORMATION);
 
     dialog.ShowModal();
 
     wxEndBusyCursor();
 }
 
-#if wxUSE_LOG
-void MyFrame::OnLogClear(wxCommandEvent& WXUNUSED(event))
-{
-    m_panel->m_log->Clear();
-}
-#endif // wxUSE_LOG
 
 void MyFrame::OnIdle( wxIdleEvent& event )
 {

@@ -37,14 +37,7 @@ enum
 {
     TEXT_QUIT = wxID_EXIT,
     TEXT_ABOUT = wxID_ABOUT,
-    TEXT_CLEAR,
-
-    // log menu
-    TEXT_LOG_KEY,
-    TEXT_LOG_CHAR,
-    TEXT_LOG_MOUSE,
-    TEXT_LOG_TEXT,
-    TEXT_LOG_FOCUS,
+    //TEXT_CLEAR,
 
     TEXT_END
 };

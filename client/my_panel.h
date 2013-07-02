@@ -26,18 +26,10 @@ public:
     MyPanel(wxFrame *frame, int x, int y, int w, int h);
     virtual ~MyPanel()
     {
-#if wxUSE_LOG
-        delete wxLog::SetActiveTarget(m_logOld);
-#endif // wxUSE_LOG
     }
 
     MyTextCtrl    *m_enter;
     static MyTextCtrl    *m_textrich;
-
-#if wxUSE_LOG
-    wxTextCtrl    *m_log;
-    wxLog         *m_logOld;
-#endif // wxUSE_LOG
 
 };
 

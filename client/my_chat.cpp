@@ -26,7 +26,7 @@ bool MyChat::OnInit()
 {
     // Create the main frame window
     MyFrame *frame = new MyFrame((wxFrame *) NULL,
-            _T("Text wxWidgets sample"), 50, 50, 700, 550);
+            _T("wxboost"), 50, 50, 700, 550);
     frame->SetSizeHints( 500, 400 );
 
     wxMenu *file_menu = new wxMenu;
@@ -36,27 +36,6 @@ bool MyChat::OnInit()
 
     wxMenuBar *menu_bar = new wxMenuBar( wxMB_DOCKABLE );
     menu_bar->Append(file_menu, _T("&File"));
-
-#if wxUSE_LOG
-    wxMenu *menuLog = new wxMenu;
-    menuLog->AppendCheckItem(TEXT_LOG_KEY, _T("Log &key events"));
-    menuLog->AppendCheckItem(TEXT_LOG_CHAR, _T("Log &char events"));
-    menuLog->AppendCheckItem(TEXT_LOG_MOUSE, _T("Log &mouse events"));
-    menuLog->AppendCheckItem(TEXT_LOG_TEXT, _T("Log &text events"));
-    menuLog->AppendCheckItem(TEXT_LOG_FOCUS, _T("Log &focus events"));
-    menuLog->AppendSeparator();
-    menuLog->Append(TEXT_CLEAR, _T("&Clear the log\tCtrl-L"),
-                    _T("Clear the log window contents"));
-
-    // select only the interesting events by default
-    MyTextCtrl::ms_logText = true;
-
-    menuLog->Check(TEXT_LOG_KEY, MyTextCtrl::ms_logKey);
-    menuLog->Check(TEXT_LOG_CHAR, MyTextCtrl::ms_logChar);
-    menuLog->Check(TEXT_LOG_TEXT, MyTextCtrl::ms_logText);
-
-    menu_bar->Append(menuLog, _T("&Log"));
-#endif // wxUSE_LOG
 
     frame->SetMenuBar(menu_bar);
 

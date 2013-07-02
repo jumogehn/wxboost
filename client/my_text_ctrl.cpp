@@ -36,19 +36,11 @@ BEGIN_EVENT_TABLE(MyTextCtrl, wxTextCtrl)
     EVT_COMMAND(wxID_ANY, wxEVT_MY_EVENT, MyTextCtrl::OnMyEvent)
 END_EVENT_TABLE()
 
-bool MyTextCtrl::ms_logKey = false;
-bool MyTextCtrl::ms_logChar = false;
-bool MyTextCtrl::ms_logMouse = false;
-bool MyTextCtrl::ms_logText = false;
-bool MyTextCtrl::ms_logFocus = false;
-
-
 void MyTextCtrl::OnMyEvent( wxCommandEvent &event )
 {
     wxString text = event.GetString();
     AppendText(text);
 }
-
 
 void MyTextCtrl::LogKeyEvent(const wxChar *name, wxKeyEvent& event) const
 {
@@ -219,7 +211,7 @@ void MyTextCtrl::OnMouseEvent(wxMouseEvent& ev)
 {
     ev.Skip();
 
-    if ( !ms_logMouse )
+//    if ( !ms_logMouse )
         return;
 
     if ( !ev.Moving() )
@@ -264,24 +256,17 @@ void MyTextCtrl::OnMouseEvent(wxMouseEvent& ev)
 
 void MyTextCtrl::OnSetFocus(wxFocusEvent& event)
 {
-    if ( ms_logFocus )
-        wxLogMessage( wxT("%p got focus."), this);
-
     event.Skip();
 }
 
 void MyTextCtrl::OnKillFocus(wxFocusEvent& event)
 {
-    if ( ms_logFocus )
-        wxLogMessage( wxT("%p lost focus"), this);
-
     event.Skip();
 }
 
 void MyTextCtrl::OnText(wxCommandEvent& event)
 {
-    if ( !ms_logText )
-        return;
+    return;
 
     MyTextCtrl *win = (MyTextCtrl *)event.GetEventObject();
     const wxChar *changeVerb = win->IsModified() ? _T("changed")
@@ -299,8 +284,7 @@ void MyTextCtrl::OnText(wxCommandEvent& event)
 
 void MyTextCtrl::OnTextEnter(wxCommandEvent& event)
 {
-    if ( !ms_logText )
-        return;
+    return;
 
     MyTextCtrl *win = (MyTextCtrl *)event.GetEventObject();
     const wxChar *data = (const wxChar *)(win->GetClientData());
@@ -337,17 +321,11 @@ void MyTextCtrl::OnTextURL(wxTextUrlEvent& event)
 
 void MyTextCtrl::OnChar(wxKeyEvent& event)
 {
-    if ( ms_logChar )
-        LogKeyEvent( _T("Char"), event);
-
     event.Skip();
 }
 
 void MyTextCtrl::OnKeyUp(wxKeyEvent& event)
 {
-    if ( ms_logKey )
-        LogKeyEvent( _T("Key up"), event);
-
     if (event.GetKeyCode() == WXK_RETURN) {
       wxCharBuffer utf8_str = GetValue().utf8_str();
       chat_message msg;  //TODO: chat_message must use wxChatBuffer
@@ -452,9 +430,6 @@ void MyTextCtrl::OnKeyDown(wxKeyEvent& event)
             wxLogMessage(_T("Control marked as non modified"));
             break;
     }
-
-    if ( ms_logKey )
-        LogKeyEvent( wxT("Key down"), event);
 
     event.Skip();
 }

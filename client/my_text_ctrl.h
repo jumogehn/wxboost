@@ -49,12 +49,6 @@ public:
 
     void OnMyEvent(wxCommandEvent& event);
 
-    static bool ms_logKey;
-    static bool ms_logChar;
-    static bool ms_logMouse;
-    static bool ms_logText;
-    static bool ms_logFocus;
-
 private:
     static inline wxChar GetChar(bool on, wxChar c) { return on ? c : _T('-'); }
 

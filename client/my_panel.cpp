@@ -30,22 +30,10 @@ MyPanel::MyPanel( wxFrame *frame, int x, int y, int w, int h )
                             wxPoint(5,170), wxSize(200,70), wxTE_MULTILINE);
   m_enter->SetClientData((void *)_T("client data"));
 
-#if wxUSE_LOG
-  m_log = new wxTextCtrl( this, wxID_ANY, _T("This is the log window.\n"),
-                          wxPoint(5,260), wxSize(200,100),
-                          wxTE_MULTILINE | wxTE_READONLY /* | wxTE_RICH */);
-
-  m_logOld = wxLog::SetActiveTarget( new wxLogTextCtrl( m_log ) );
-#endif // wxUSE_LOG
-
   // lay out the controls
   wxBoxSizer *col1 = new wxBoxSizer(wxVERTICAL);
   col1->Add( m_textrich, 1, wxALL | wxEXPAND, 10 );
   col1->Add( m_enter, 0, wxALL | wxEXPAND, 10 );
-
-#if wxUSE_LOG
-  col1->Add( m_log, 0, wxALL | wxEXPAND, 10 );
-#endif
 
   SetAutoLayout( true );
   SetSizer(col1);
