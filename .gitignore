@@ -2,4 +2,13 @@
 cscope.files
 cscope.out
 tags
+client/bin/
+client/client.depend
+client/client.layout
+client/client_build_log.html
+client/obj/
+server/bin/
+server/obj/
+server/server.layout
+server/server_build_log.html
 
