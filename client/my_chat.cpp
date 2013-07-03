@@ -46,7 +46,7 @@ bool MyChat::OnInit()
     io_service_ptr = new boost::asio::io_service;
 
     tcp::resolver resolver(*io_service_ptr);
-    tcp::resolver::query query("127.0.0.1", "9096");
+    tcp::resolver::query query("opencpp.kr", "16203");
     tcp::resolver::iterator iterator = resolver.resolve(query);
 
     chat_client_ptr = new chat_client(*io_service_ptr, iterator);
