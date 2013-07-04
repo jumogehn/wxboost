@@ -11,4 +11,5 @@ server/bin/
 server/obj/
 server/server.layout
 server/server_build_log.html
+client/mychat
 
