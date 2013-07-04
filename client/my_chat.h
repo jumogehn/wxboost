@@ -37,8 +37,6 @@ enum
 {
     TEXT_QUIT = wxID_EXIT,
     TEXT_ABOUT = wxID_ABOUT,
-    //TEXT_CLEAR,
-
     TEXT_END
 };
 

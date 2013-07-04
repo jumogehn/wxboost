@@ -30,31 +30,12 @@ public:
                const wxPoint &pos, const wxSize &size, int style = 0)
         : wxTextCtrl(parent, id, value, pos, size, style)
     {
-        m_hasCapture = false;
     }
 
-    void OnKeyDown(wxKeyEvent& event);
     void OnKeyUp(wxKeyEvent& event);
-    void OnChar(wxKeyEvent& event);
-
-    void OnText(wxCommandEvent& event);
-    void OnTextEnter(wxCommandEvent& event);
-    void OnTextURL(wxTextUrlEvent& event);
-    void OnTextMaxLen(wxCommandEvent& event);
-
-    void OnMouseEvent(wxMouseEvent& event);
-
-    void OnSetFocus(wxFocusEvent& event);
-    void OnKillFocus(wxFocusEvent& event);
-
     void OnMyEvent(wxCommandEvent& event);
 
 private:
-    static inline wxChar GetChar(bool on, wxChar c) { return on ? c : _T('-'); }
-
-    void LogKeyEvent(const wxChar *name, wxKeyEvent& event) const;
-
-    bool m_hasCapture;
 
     DECLARE_EVENT_TABLE()
 };
